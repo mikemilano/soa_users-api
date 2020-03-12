@@ -1,6 +1,5 @@
 serve:
 	php -S 127.0.0.1:8001 -t public
-	# php bin/console server:run
 
 cc:
 	php bin/console cache:clear
