@@ -1,0 +1,31 @@
+name: users-api
+recipe: laravel
+config:
+  webroot: public
+  via: nginx
+services:
+  database:
+    config: {}
+    type: mysql
+    portforward: true
+    creds:
+      user: main
+      password:
+      database: main
+tooling:
+  console:
+    service: appserver
+    cmd: bin/console
+  make:
+    service: appserver
+    cmd: make
+  mysql:
+    service: ':host'
+    description: Drops into a MySQL shell on a database service
+    cmd: mysql -uroot main
+    options:
+      host:
+        description: The database service to use
+        default: database
+        alias:
+          - h
