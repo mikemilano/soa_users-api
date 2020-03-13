@@ -4,8 +4,6 @@ This app is an unsecured microservice meant to be hosted on a private network ac
 to only trusted systems. For example, an OAuth application would be accessible to the public
 and make API requests to this Users API over a private network.
 
-Update the `.env` file with desired configurations and reference the `Makefile` for setup commands.
-
 ## Quickstart for Lando Users
 
 Tooling for `bin/console` and `make` have been added to the Lando config. Since there's no Symfony recipe, it's
@@ -17,11 +15,25 @@ Run the following commmands to get started with Lando:
 # Build and start the app.
 lando start
 
-# Install the schema.
+# Wipe db and install the migration.
 lando make db-init
 
 ## Seed the database.
 lando make db-seed
+```
+
+Now you can navigate to the OpenAPI docs: 
+- REST API: http://users-api.lndo.site/api
+- GraphQL API: http://users-api.lndo.site:8000/api/graphql
+
+Tooling:
+
+```bash
+# Run bin/console commands: i.e. bin/console cache:clear
+lando console cache:clear
+
+# Run make commands (There are common application commands defined in the Makefile)
+lando make cc
 ```
 
 ## Testing
