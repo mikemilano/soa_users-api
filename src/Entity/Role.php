@@ -57,6 +57,22 @@ class Role
     }
 
     /**
+     * @return mixed
+     */
+    public function getRole()
+    {
+        return $this->role;
+    }
+
+    /**
+     * @param mixed $role
+     */
+    public function setRole($role): void
+    {
+        $this->role = $role;
+    }
+
+    /**
      * @return Collection|User[]
      */
     public function getUsers(): Collection

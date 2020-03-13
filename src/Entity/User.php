@@ -58,12 +58,13 @@ class User
      * @ORM\ManyToMany(targetEntity="App\Entity\Role", inversedBy="users")
      * @ORM\JoinTable(name="users_roles",
      *      joinColumns={@ORM\JoinColumn(name="user_id", referencedColumnName="id")},
-     *      inverseJoinColumns={@ORM\JoinColumn(name="role_id", referencedColumnName="id", unique=true)})
+     *      inverseJoinColumns={@ORM\JoinColumn(name="role_id", referencedColumnName="id")})
      */
     private $roles;
 
     public function __construct()
     {
+        $this->created = new \DateTime();
         $this->roles = new ArrayCollection();
     }
 
@@ -169,4 +170,10 @@ class User
 
         return $this;
     }
+
+    public function __toString(): string
+    {
+        return $this->getEmail();
+    }
+
 }

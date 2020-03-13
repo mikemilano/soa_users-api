@@ -1,26 +1,28 @@
+cc:
+	bin/console cache:clear
+
 serve:
 	php -S 127.0.0.1:8001 -t public
-	# php bin/console server:run
-
-cc:
-	php bin/console cache:clear
 
 db-create:
-	php bin/console doctrine:database:create
+	bin/console doctrine:database:create
 
 db-drop:
-	php bin/console doctrine:database:drop --force
+	bin/console doctrine:database:drop --force
 
 db-wipe:
-	php bin/console doctrine:schema:drop --force
+	bin/console doctrine:schema:drop --force
+
+db-schema: db-wipe
+	bin/console doctrine:schema:create
 
 db-migrate:
-	php bin/console doctrine:migrations:migrate -n
+	bin/console doctrine:migrations:migrate -n
 
-db-init: db-wipe db-migrate
+db-init: db-drop db-create db-migrate
 
 db-seed:
-	php bin/console doctrine:fixtures:load --no-interaction
+	bin/console doctrine:fixtures:load --no-interaction
 
 testu:
 	bin/phpunit -c phpunit_unit.xml
